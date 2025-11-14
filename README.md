@@ -50,3 +50,4 @@ Ying Zhang, Emory Ryan Worsham, Samuel Fogbawa Turay, Hillary William Okoth
 * __Samuel Turay:__ _"Take therefore no thought for the morrow: for the morrow shall take thought for the things of itself. Sufficient unto the day is the evil thereof."_ (Matthew 6:34)
 * __Ying Zhang:__ _"For unto every one that hath shall be given, and he shall have abundance: but from him that hath not shall be taken away even that which he hath."_ (Matthew 25:29)
 * __Hillary Okoth:__ "Whether you think you can, or you think you can’t—you’re right." ~ Henry Ford
+* __Ryan Worsham:__ _"I have not failed. I've just found 10,000 ways that won't work."_ -Thomas A. Edison 

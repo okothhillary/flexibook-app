@@ -18,6 +18,22 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      /** This setting allows NextAuth.js to automatically link a Google account
+      * to an existing user account if they share the same email address.
+      *
+      * Rationale: This provides a smoother user experience, allowing users who
+      * initially signed up with email*password to later sign in with Google
+      * using the same email without encountering an "OAuthAccountNotLinked" error.
+      *
+      * Security Consideration: The "danger" in `allowDangerousEmailAccountLinking`
+      * refers to the risk that if an attacker gains control of a user's Google
+      * account, they could potentially gain access to the user's Flexibook account
+      * without needing the Flexibook password. This relies on the security of
+      * the Google account itself. Many large applications accept this trade-off
+      * for improved UX, as Google accounts typically have strong security measures
+      * (e.g., 2FA).
+      */
+      allowDangerousEmailAccountLinking: true,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -72,10 +88,15 @@ export const authOptions: NextAuthOptions = {
         });
         // If the user exists, great, just let them sign in.
         if (userExists) {
+          // If the user exists but doesn't have a role, we'll send them to the role selection page.
+          // This can happen if they signed up with Google before we added the role selection.
+          if (!userExists.role) {
+            return "/auth/select-role";
+          }
           return true;
         }
         // If it's a new Google user, we'll create an account for them.
-        // By default, they'll get the 'STUDENT' role as defined in our schema.
+        // We won't assign a role here, so they'll be redirected to the role selection page.
         await prisma.user.create({
           data: {
             email: user.email!,
@@ -83,7 +104,7 @@ export const authOptions: NextAuthOptions = {
             image: user.image!,
           },
         });
-        return true;
+        return "/auth/select-role";
       }
       // If for some reason we get here, it means the sign-in wasn't handled, so we deny it.
       return false;

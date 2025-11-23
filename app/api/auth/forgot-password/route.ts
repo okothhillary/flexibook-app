@@ -3,7 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Conditionally initialize Resend only if the API key is available.
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 const forgotPasswordSchema = z.object({
   email: z.string().email(),
@@ -19,7 +22,8 @@ export async function POST(req: NextRequest) {
     });
 
     if (!user) {
-      // For security reasons, don't reveal if the user doesn't exist
+      // For security reasons, don't reveal if the user doesn't exist.
+      // We still return a success message to prevent email enumeration.
       return NextResponse.json(
         { message: "If an account with that email exists, we've sent a password reset link." },
         { status: 200 }
@@ -41,17 +45,19 @@ export async function POST(req: NextRequest) {
     // Send email with reset link
     const resetLink = `${process.env.NEXTAUTH_URL}/auth/reset-password?token=${token}`;
 
-    // This is where you would integrate with your email service (e.g., Resend, SendGrid, Nodemailer)
-    // For now, we'll just log the reset link to the console.
-    console.log("Password reset link:", resetLink);
-
-    // Example using Resend (uncomment and configure RESEND_API_KEY in .env)
-    await resend.emails.send({
-      from: 'onboarding@resend.dev', // IMPORTANT: Replace with your verified sender domain in Resend
-      to: user.email,
-      subject: 'Reset your Flexibook password',
-      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
-    });
+    // Only attempt to send an email if Resend is configured.
+    if (resend) {
+      await resend.emails.send({
+        from: 'onboarding@resend.dev', // IMPORTANT: Replace with your verified sender domain in Resend
+        to: user.email,
+        subject: 'Reset your Flexibook password',
+        html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
+      });
+    } else {
+      // If Resend is not configured, log the link to the console for development/testing.
+      // This prevents the build from failing in production if the API key is not set.
+      console.log("Password reset link (Resend not configured):", resetLink);
+    }
 
     return NextResponse.json(
       { message: "If an account with that email exists, we've sent a password reset link." },

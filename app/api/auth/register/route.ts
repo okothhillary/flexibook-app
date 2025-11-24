@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { ZodError } from "zod";
 import { prisma } from "@/lib/prisma";
 import { signUpSchema } from "@/lib/validations";
 
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: "User with this email already exists" },
+        { message: "User with this email already exists" },
         { status: 400 }
       );
     }
@@ -57,11 +58,17 @@ export async function POST(req: NextRequest) {
       },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Signup error:", error);
-    return NextResponse.json(
-      { error: error.message || "Something went wrong" },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        { message: error.errors[0]?.message ?? "Invalid input" },
+        { status: 400 }
+      );
+    }
+
+    const message = error instanceof Error ? error.message : "Something went wrong";
+
+    return NextResponse.json({ message }, { status: 500 });
   }
 }

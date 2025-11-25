@@ -88,18 +88,28 @@ export async function POST(
     // Check teacher availability
     const dayOfWeek = startTime.getDay() // 0-6 (Sunday = 0)
     const timeStr = startTime.toTimeString().substring(0, 5) // HH:mm
-    console.log("Checking availability for", dayOfWeek, timeStr)
+    
+    // booking.teacherId refers to User.id; Availability.teacherId expects Teacher.id
+    const teacherProfile = await prisma.teacher.findUnique({
+      where: { userId: booking.teacherId },
+    })
+
+    if (!teacherProfile) {
+      return NextResponse.json(
+        { error: "Teacher profile not found" },
+        { status: 404 }
+      )
+    }
+
     const availability = await prisma.availability.findFirst({
       where: {
-        teacherId: booking.teacherId,
+        teacherId: teacherProfile.id,
         dayOfWeek,
         isRecurring: true,
         startTime: { lte: timeStr },
         endTime: { gte: timeStr },
       },
     })
-
-    console.log("Availability found:", availability)
 
     if (!availability) {
       return NextResponse.json(

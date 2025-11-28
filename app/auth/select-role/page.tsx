@@ -29,24 +29,14 @@ export default function SelectRolePage() {
 
     const response = await fetch("/api/auth/update-role", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: session.user.email,
-        role,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: session.user.email, role }),
     });
 
     if (response.ok) {
-      // Update the session with the new role
       await update({ role });
-
-      if (role === "TEACHER") {
-        router.push("/teachers/profile");
-      } else {
-        router.push("/dashboard");
-      }
+      if (role === "TEACHER") router.push("/teachers/profile");
+      else router.push("/dashboard");
     } else {
       const data = await response.json();
       setError(data.message || "Something went wrong");
@@ -69,32 +59,35 @@ export default function SelectRolePage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md sm:max-w-lg lg:max-w-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-center">
             Choose Your Role
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col space-y-4">
-          <p className="text-center text-gray-600">
+        <CardContent className="flex flex-col space-y-3 sm:space-y-4">
+          <p className="text-center text-gray-600 text-sm sm:text-base">
             Are you a student looking to learn, or a teacher wanting to share
             your knowledge?
           </p>
+
           <Button
             onClick={() => handleRoleSelection("STUDENT")}
-            className="w-full"
+            className="w-full h-12 sm:h-14 lg:h-16 text-sm sm:text-base lg:text-lg"
             disabled={loading || status !== "authenticated"}
           >
             I'm a Student
           </Button>
+
           <Button
             onClick={() => handleRoleSelection("TEACHER")}
-            className="w-full"
+            className="w-full h-12 sm:h-14 lg:h-16 text-sm sm:text-base lg:text-lg"
             disabled={loading || status !== "authenticated"}
           >
             I'm a Teacher
           </Button>
+
           {error && <p className="text-sm text-red-500">{error}</p>}
         </CardContent>
       </Card>

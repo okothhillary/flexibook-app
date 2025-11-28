@@ -25,12 +25,8 @@ export default function SignInPage() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      if (session.user.role === "TEACHER") {
-        router.push("/teachers/profile");
-      } else {
-        // Default to student dashboard
-        router.push("/dashboard");
-      }
+      if (session.user.role === "TEACHER") router.push("/teachers/profile");
+      else router.push("/dashboard");
     }
   }, [status, session, router]);
 
@@ -39,15 +35,9 @@ export default function SignInPage() {
     setLoading(true);
     setError(null);
 
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    const result = await signIn("credentials", { redirect: false, email, password });
 
-    if (result?.error) {
-      setError(result.error);
-    }
+    if (result?.error) setError(result.error);
 
     setLoading(false);
   };
@@ -56,39 +46,39 @@ export default function SignInPage() {
     signIn("google", { callbackUrl: "/dashboard" });
   };
 
-  if (status === "loading" || status === "authenticated") {
-    return <div>Loading...</div>; // Or a spinner component
-  }
+  if (status === "loading" || status === "authenticated") return <div>Loading...</div>;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-[30%] max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md sm:max-w-lg lg:max-w-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-center">
             Sign In to Flexibook
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full h-12 sm:h-14 lg:h-16 text-sm sm:text-base lg:text-lg"
               onClick={handleGoogleSignIn}
             >
               Sign in with Google
             </Button>
+
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
+              <div className="relative flex justify-center text-xs sm:text-sm uppercase">
                 <span className="bg-white px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
             </div>
-            <form onSubmit={handleCredentialsSignIn} className="space-y-4">
-              <div className="space-y-2">
+
+            <form onSubmit={handleCredentialsSignIn} className="space-y-3 sm:space-y-4">
+              <div className="space-y-1 sm:space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
@@ -99,7 +89,8 @@ export default function SignInPage() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="space-y-2">
+
+              <div className="space-y-1 sm:space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
@@ -108,23 +99,26 @@ export default function SignInPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="text-right text-sm">
+                <div className="text-right text-xs sm:text-sm">
                   <Link href="/auth/forgot-password" className="underline">
                     Forgot password?
                   </Link>
                 </div>
               </div>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button 
-              type="submit" 
-              className="w-full bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white shadow-lg shadow-gray-400/20 hover:shadow-xl hover:shadow-gray-500/30 rounded-xl px-6 font-bold transition-all duration-300 hover:-translate-y-0.5" 
-              disabled={loading}>
+
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white shadow-lg shadow-gray-400/20 hover:shadow-xl hover:shadow-gray-500/30 rounded-xl px-6 font-bold transition-all duration-300 hover:-translate-y-0.5 h-12 sm:h-14 lg:h-16 text-sm sm:text-base lg:text-lg"
+                disabled={loading}
+              >
                 {loading ? "Signing In..." : "Sign In"}
               </Button>
             </form>
           </div>
         </CardContent>
-        <CardFooter className="text-center text-sm">
+        <CardFooter className="text-center text-sm sm:text-base">
           <p>
             Don't have an account?{" "}
             <Link href="/auth/signup" className="underline">

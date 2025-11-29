@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
+import { teacherProfileSchema } from "@/lib/validations"
 
 export const dynamic = "force-dynamic"
 
@@ -35,27 +36,15 @@ export async function PATCH(req: NextRequest) {
     }
 
     const body = await req.json()
+    const validation = teacherProfileSchema.safeParse(body)
 
-    // Only pick the fields we allow users to update
-    const allowedFields: Partial<{
-      bio: string
-      hourlyRate: number
-      languages: string[]
-      yearsExperience: number
-      bufferTime: number
-      isActive: boolean
-    }> = {
-      bio: body.bio,
-      hourlyRate: body.hourlyRate,
-      languages: body.languages,
-      yearsExperience: body.yearsExperience,
-      bufferTime: body.bufferTime,
-      isActive: body.isActive,
+    if (!validation.success) {
+      return NextResponse.json({ errors: validation.error.errors }, { status: 400 })
     }
 
     const updatedTeacher = await prisma.teacher.update({
       where: { userId: session.user.id },
-      data: allowedFields,
+      data: validation.data,
     })
 
     return NextResponse.json({ teacher: updatedTeacher })

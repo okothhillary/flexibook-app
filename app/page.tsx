@@ -8,11 +8,10 @@ export default function Home() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Global background effects */}
       <div className="fixed inset-0 -z-10">
-        {/* Floating geometric shapes */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/4 w-72 h-72 bg-gradient-to-br from-cyan-100/30 to-blue-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 right-1/3 w-96 h-96 bg-gradient-to-br from-indigo-100/20 to-purple-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 rounded-full blur-3xl sm:w-48 sm:h-48 sm:top-16 sm:left-4"></div>
+        <div className="absolute top-40 right-20 w-80 h-80 bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl sm:w-56 sm:h-56 sm:top-32 sm:right-8"></div>
+        <div className="absolute bottom-20 left-1/4 w-72 h-72 bg-gradient-to-br from-cyan-100/30 to-blue-100/30 rounded-full blur-3xl sm:w-48 sm:h-48 sm:left-16"></div>
+        <div className="absolute bottom-40 right-1/3 w-96 h-96 bg-gradient-to-br from-indigo-100/20 to-purple-100/20 rounded-full blur-3xl sm:w-72 sm:h-72 sm:right-12"></div>
 
         {/* Elegant lines */}
         <svg
@@ -59,21 +58,22 @@ export default function Home() {
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
       `}</style>
+
       {/* Navigation */}
       <nav className="bg-white/70 backdrop-blur-2xl border-b border-gray-200/60 sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-8 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <Link
             href="/"
-            className="text-2xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent tracking-tighter hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300"
+            className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent tracking-tighter hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900 }}
           >
             Flexibook
           </Link>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-2 sm:gap-4 items-center">
             <Link href="/auth/signin">
               <Button
                 variant="ghost"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 font-semibold rounded-lg transition-all duration-300"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 font-semibold rounded-lg px-3 sm:px-4 transition-all duration-300"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 Sign In
@@ -81,7 +81,7 @@ export default function Home() {
             </Link>
             <Link href="/auth/signup">
               <Button
-                className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white shadow-lg shadow-gray-400/20 hover:shadow-xl hover:shadow-gray-500/30 rounded-xl px-6 font-bold transition-all duration-300 hover:-translate-y-0.5"
+                className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white shadow-lg shadow-gray-400/20 hover:shadow-xl hover:shadow-gray-500/30 rounded-xl px-4 sm:px-6 font-bold transition-all duration-300 hover:-translate-y-0.5"
                 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
               >
                 Get Started
@@ -92,17 +92,17 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-32 px-8 overflow-hidden">
+      <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="container mx-auto max-w-5xl text-center relative z-10">
-          {/* 3D Character Illustrations */}
-          <div className="absolute -top-16 -left-64 w-[400px] h-[400px] opacity-50">
+          {/* Illustrations */}
+          <div className="absolute -top-16 -left-64 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] sm:-top-16 sm:-left-48 opacity-50">
             <img
               src="https://illustrations.popsy.co/amber/online-shopping.svg"
               alt="3d character studying"
               className="w-full h-full object-contain filter drop-shadow-2xl"
             />
           </div>
-          <div className="absolute -top-32 -right-48 w-[400px] h-[400px] opacity-50">
+          <div className="absolute -top-32 -right-48 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] sm:-top-32 sm:-right-48 opacity-50">
             <img
               src="https://illustrations.popsy.co/amber/man-riding-a-rocket.svg"
               alt="3d character learning"
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
 
           <h1
-            className="text-8xl font-black text-gray-900 mb-8 tracking-tighter leading-none text-shadow-soft"
+            className="text-4xl sm:text-6xl lg:text-7xl font-black text-gray-900 mb-6 sm:mb-8 tracking-tight leading-tight sm:leading-none text-shadow-soft"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900 }}
           >
             Book language lessons
@@ -122,19 +122,18 @@ export default function Home() {
           </h1>
 
           <p
-            className="text-2xl text-gray-600 mb-14 leading-relaxed font-medium max-w-3xl mx-auto"
+            className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-10 sm:mb-14 leading-relaxed font-medium max-w-3xl mx-auto"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             Connect with experienced teachers worldwide. Choose your time, pick
             your duration, and start learning today.
           </p>
 
-          <div className="flex gap-5 justify-center mb-20">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center mb-12 sm:mb-20">
             <Link href="/auth/signup/student">
-              {/*<Link href="/auth/signup?role=student">*/}
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white shadow-2xl shadow-gray-400/30 rounded-2xl px-12 h-16 text-lg font-bold hover:shadow-gray-500/40 hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white shadow-2xl shadow-gray-400/30 rounded-2xl px-8 sm:px-12 h-14 sm:h-16 text-base sm:text-lg font-bold hover:shadow-gray-500/40 hover:-translate-y-0.5 transition-all duration-300"
                 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
               >
                 Find a Teacher →
@@ -142,11 +141,10 @@ export default function Home() {
             </Link>
 
             <Link href="/auth/signup/teacher">
-              {/*<Link href="/auth/signup?role=teacher">*/}
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-500 rounded-2xl px-12 h-16 text-lg font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-500 rounded-2xl px-8 sm:px-12 h-14 sm:h-16 text-base sm:text-lg font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
               >
                 Become a Teacher
@@ -157,14 +155,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-12 px-8 bg-white">
+      <footer className="border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto text-center">
           <div className="mb-4">
-            <Link href="/" className="text-xl font-semibold text-gray-900">
+            <Link
+              href="/"
+              className="text-xl sm:text-2xl font-semibold text-gray-900"
+            >
               Flexibook
             </Link>
           </div>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-sm sm:text-base">
             &copy; 2024 Flexibook. All rights reserved.
           </p>
         </div>

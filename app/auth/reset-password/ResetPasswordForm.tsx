@@ -26,9 +26,7 @@ export default function ResetPasswordForm() {
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!token) {
-      setError("Invalid or missing token.");
-    }
+    if (!token) setError("Invalid or missing token.");
   }, [token]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,18 +49,15 @@ export default function ResetPasswordForm() {
 
     const response = await fetch("/api/auth/reset-password", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, password }),
     });
 
     if (response.ok) {
-      setMessage("Your password has been reset successfully. You can now sign in.");
-      // Optionally redirect to sign-in page after a delay
-      setTimeout(() => {
-        router.push("/auth/signin");
-      }, 3000);
+      setMessage(
+        "Your password has been reset successfully. You can now sign in."
+      );
+      setTimeout(() => router.push("/auth/signin"), 3000);
     } else {
       const data = await response.json();
       setError(data.message || "Something went wrong");
@@ -72,20 +67,20 @@ export default function ResetPasswordForm() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md sm:max-w-lg lg:max-w-xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-center">
             Reset Password
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
-          {message && <p className="text-sm text-green-500 mb-4">{message}</p>}
+          {error && <p className="text-sm sm:text-base text-red-500 mb-4">{error}</p>}
+          {message && <p className="text-sm sm:text-base text-green-500 mb-4">{message}</p>}
           {!token && !error ? (
-            <p className="text-sm text-gray-600">Loading...</p>
+            <p className="text-sm sm:text-base text-gray-600">Loading...</p>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="password">New Password</Label>
                 <Input
@@ -106,13 +101,17 @@ export default function ResetPasswordForm() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading || !!error}>
+              <Button
+                type="submit"
+                className="w-full h-12 sm:h-14 lg:h-16 text-sm sm:text-base lg:text-lg"
+                disabled={loading || !!error}
+              >
                 {loading ? "Resetting..." : "Reset Password"}
               </Button>
             </form>
           )}
         </CardContent>
-        <CardFooter className="text-center text-sm">
+        <CardFooter className="text-center text-sm sm:text-base">
           <p>
             <Link href="/auth/signin" className="underline">
               Back to Sign In

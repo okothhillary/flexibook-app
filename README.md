@@ -1,8 +1,8 @@
 # 🌟 Flexibook — Flexible Booking & Payments for Teachers
+
 (https://flexibook-app.vercel.app/)
 
 > A full-stack web application that allows teachers to publish their availability and students to book lessons flexibly with integrated payments and calendar sync.
-
 
 ---
 
@@ -15,39 +15,41 @@ Teachers can publish available time slots, students can book and pay instantly, 
 
 ## 🎯 Features
 
-| Category | Description |
-|-----------|--------------|
-| **Authentication** | Secure sign-up/login with role-based access for teachers and students (NextAuth.js). |
-| **Availability Management** | Teachers define and sync their schedule with Google Calendar to prevent double-booking. |
-| **Booking System** | Students choose a day, start time, and duration to book lessons instantly. |
-| **Payments** | Stripe integration for secure payments and refund handling. |
-| **Email Notifications** | Automatic confirmations, reminders, and cancellations via Resend or SendGrid. |
-| **Dashboards (Enhancement)** | Personalized dashboards for teachers (income, schedule) and students (history, receipts). |
-| **Meeting Links (Enhancement)** | Auto-generated Zoom or Tencent Meeting links for confirmed sessions. |
+| Category                        | Description                                                                               |
+| ------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Authentication**              | Secure sign-up/login with role-based access for teachers and students (NextAuth.js).      |
+| **Availability Management**     | Teachers define and sync their schedule with Google Calendar to prevent double-booking.   |
+| **Booking System**              | Students choose a day, start time, and duration to book lessons instantly.                |
+| **Payments**                    | Stripe integration for secure payments and refund handling.                               |
+| **Email Notifications**         | Automatic confirmations, reminders, and cancellations via Resend or SendGrid.             |
+| **Dashboards (Enhancement)**    | Personalized dashboards for teachers (income, schedule) and students (history, receipts). |
+| **Meeting Links (Enhancement)** | Auto-generated Zoom or Tencent Meeting links for confirmed sessions.                      |
 
 ---
 
 ## 🧱 Tech Stack
 
-| Layer | Technologies |
-|-------|---------------|
-| **Frontend** | Next.js 15, React 19, TypeScript, Tailwind CSS |
-| **Backend** | Next.js Server Actions, Node.js, Prisma ORM |
-| **Database** | PostgreSQL (Neon cloud) |
-| **Auth** | NextAuth.js |
-| **Payments** | Stripe API |
-| **Email / Notifications** | Resend / SendGrid |
-| **Calendar / Meetings** | Google Calendar API, Zoom / Tencent Meeting |
-| **Deployment** | Vercel (frontend + API) |
-| **Version Control** | GitHub |
+| Layer                     | Technologies                                   |
+| ------------------------- | ---------------------------------------------- |
+| **Frontend**              | Next.js 15, React 19, TypeScript, Tailwind CSS |
+| **Backend**               | Next.js Server Actions, Node.js, Prisma ORM    |
+| **Database**              | PostgreSQL (Neon cloud)                        |
+| **Auth**                  | NextAuth.js                                    |
+| **Payments**              | Stripe API                                     |
+| **Email / Notifications** | Resend / SendGrid                              |
+| **Calendar / Meetings**   | Google Calendar API, Zoom / Tencent Meeting    |
+| **Deployment**            | Vercel (frontend + API)                        |
+| **Version Control**       | GitHub                                         |
 
 ---
 
 ## 👩‍💻 Team members
+
 Ying Zhang, Emory Ryan Worsham, Samuel Fogbawa Turay, Hillary William Okoth
 
 ## ❝ ❞ Team members Quotes
-* __Samuel Turay:__ _"Take therefore no thought for the morrow: for the morrow shall take thought for the things of itself. Sufficient unto the day is the evil thereof."_ (Matthew 6:34)
-* __Ying Zhang:__ _"For unto every one that hath shall be given, and he shall have abundance: but from him that hath not shall be taken away even that which he hath."_ (Matthew 25:29)
-* __Hillary Okoth:__ "Whether you think you can, or you think you can’t—you’re right." ~ Henry Ford
-* __Ryan Worsham:__ _"I have not failed. I've just found 10,000 ways that won't work."_ -Thomas A. Edison 
+
+- **Samuel Turay:** _"Take therefore no thought for the morrow: for the morrow shall take thought for the things of itself. Sufficient unto the day is the evil thereof."_ (Matthew 6:34)
+- **Ying Zhang:** _"For unto every one that hath shall be given, and he shall have abundance: but from him that hath not shall be taken away even that which he hath."_ (Matthew 25:29)
+- **Hillary Okoth:** "_Whether you think you can, or you think you can’t—you’re right_." ~ Henry Ford
+- **Ryan Worsham:** _"I have not failed. I've just found 10,000 ways that won't work."_ -Thomas A. Edison

@@ -19,6 +19,7 @@ export const teacherProfileSchema = z.object({
   languages: z.array(z.string()).min(1, "At least one language is required"),
   yearsExperience: z.number().min(0).max(50).optional(),
   bufferTime: z.number().min(0).max(60).optional(),
+  isActive: z.boolean().optional(),
 })
 
 export const availabilitySchema = z.object({

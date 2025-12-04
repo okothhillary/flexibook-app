@@ -17,13 +17,15 @@ Teachers can publish available time slots, students can book and pay instantly, 
 
 | Category                        | Description                                                                               |
 | ------------------------------- | ----------------------------------------------------------------------------------------- |
-| **Authentication**              | Secure sign-up/login with role-based access for teachers and students (NextAuth.js).      |
+| **Authentication&Authorizarion**| Secure sign-up/login with role-based access for teachers and students (NextAuth.js).      |
 | **Availability Management**     | Teachers define and sync their schedule with Google Calendar to prevent double-booking.   |
-| **Booking System**              | Students choose a day, start time, and duration to book lessons instantly.                |
-| **Payments**                    | Stripe integration for secure payments and refund handling.                               |
-| **Email Notifications**         | Automatic confirmations, reminders, and cancellations via Resend or SendGrid.             |
-| **Dashboards (Enhancement)**    | Personalized dashboards for teachers (income, schedule) and students (history, receipts). |
-| **Meeting Links (Enhancement)** | Auto-generated Zoom or Tencent Meeting links for confirmed sessions.                      |
+| **student Booking Flow**        | Students choose a day, start time, and duration to book lessons instantly.                |
+| **Responsive Design**           | Better UI experience for users with diffferent devices            |
+| **Student&Teacher Dashboard**   | Personalized dashboards for teachers(profile,income) and students(reminder,reschedule).   |
+| **Meeting Links (Enhancement)** | Mocked auto-generated meeting links for confirmed sessions.                      |
+| **Payments (Enhancement)**      | Mocked Stripe integration for secure payments and refund handling.                               |
+| **Unit Tests(Enhancement)**     | Booking Get and Post API call functions.                            |
+
 
 ---
 

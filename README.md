@@ -1,4 +1,4 @@
-# 🌟 Flexibook — Flexible Booking & Payments for Teachers
+# 🌟 Flexibook — Booking & Payments for Teachers
 
 (https://flexibook-app.vercel.app/)
 

@@ -47,7 +47,7 @@ Teachers can publish available time slots, students can book and pay instantly, 
 
 ## 👩‍💻 Team members
 
-Ying Zhang, Emory Ryan Worsham, Samuel Fogbawa Turay, Hillary William Okoth
+Ying Zhang, Emory Ryan Worsham, Samuel Fogbawa Turay, Hillary Okoth
 
 ## ❝ ❞ Team members Quotes
 
